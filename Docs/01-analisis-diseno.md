@@ -15,17 +15,17 @@ superar su capacidad maxima ni quedar
 completamente vacio ni con nivel negativo.
 
 # Identificación de objetos
-Se representaran por medio de objetos tanto los 
+Se representarán por medio de objetos tanto los 
 tanques como los sensores asociados a cada tanque:
 ### Tanque
-Representa el objeto fisico con almacenamiento, es 
-necesario ya que facilita la organizacion y acceso a
-los datos de los objetos fisicos, se encargara de
+Representa el objeto físico con almacenamiento, es 
+necesario, ya que facilita la organización y acceso a
+los datos de los objetos físicos, se encargara de
 controlar las acciones del tanque asi como su estado
 actual.
 ### Sensores
 Representa sensores para medir el nivel de llenado 
-del tanque, es necesario ya que toda la logica para
+del tanque, es necesario, ya que toda la lógica para
 evitar problemas con el contenido del tanque se basa
 en poder saber su nivel constantemente, se encarga
 de transmitir el nivel de llenado de su respectivo
