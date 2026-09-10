@@ -3,7 +3,6 @@
 - **Estudiante A:** Leonardo Montellano Gonzalez (Modelo de Tanque)
 - **Estudiante B:** Aaron Emmanuel Trejo Mendoza (Modelo de Sensor)
 - **Fecha de inicio:** [3/9/26]
-- 
 # Descripción del problema 
 Se pretende representar un sistema automatico de 
 control y gestion de tanques de almacenamiento.
