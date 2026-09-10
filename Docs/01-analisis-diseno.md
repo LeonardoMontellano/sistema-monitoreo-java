@@ -66,44 +66,7 @@ Gestion del estado del proceso.
 
 # Diagrama UML inicial
 
-```text
-+-------------------------------------------------------------+
-|                           Tanque                            |
-+-------------------------------------------------------------+
-| - id: String                                                |
-| - capacidadMaxima: double                                   |
-| - nivelActual: double                                       |
-| - estado: String                                            |
-+-------------------------------------------------------------+
-| + Tanque(id: String, capacidadMaxima: double)               |
-| + getId(): String                                           |
-| + getCapacidadMaxima(): double                              |
-| + getNivelActual(): double                                  |
-| + getEstado(): String                                       |
-| + llenar(cantidad: double): void                            |
-| + vaciar(cantidad: double): void                            |
-| + detener(): void                                           |
-| + calcularPorcentaje(): double                              |
-| + obtenerInformacion(): String                              |
-+-------------------------------------------------------------+
-                              ^
-                              | 1 (monitorea)
-                              |
-+-------------------------------------------------------------+
-|                         SensorNivel                         |
-+-------------------------------------------------------------+
-| - id: String                                                |
-| - tanqueAsociado: Tanque                                    |
-| - ultimaLectura: double                                     |
-+-------------------------------------------------------------+
-| + SensorNivel(id: String, tanqueAsociado: Tanque)           |
-| + getId(): String                                           |
-| + leerNivel(): double                                       |
-| + getUltimaLectura(): double                                |
-| + esLecturaValida(): boolean                                |
-| + obtenerReporte(): String                                  |
-+-------------------------------------------------------------+
-```
+![Diagrama UML inicial](UML.jpg)
 
 # Justificación del diseño
 
