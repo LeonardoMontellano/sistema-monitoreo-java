@@ -38,10 +38,21 @@ tanque asociado.
 
 # Estado y comportamiento
 
-| Objeto propuesto | Responsabilidad                                                                                      | Informacipón que debe conservar                                                   | Comportamientos que debe realizar                                                                                                          |
-|-----------------|------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| Tanque          | Administrar el nivel del liquido, garantizar sus limites de uso seguros, controlar el flujo de estado | Capacidad Maxima<br/>Nivel actual<br/>Estado de operación<br/>Identificador unico | Incrementar el nivel de liquido<br/>Disminuir el nivel de liquido<br/>Cambiar el estado a uno de reposo<br/>Calcular porcentaje de llenado |
-| sensor          | Monitorear la lectura del nivel de su respectivo tanque                                              | Identificador unico<br/>Tanque relacionado<br/>Ultima lectura                     | Mostrar y actualizar nivel del tanque<br/>Consultar valor de la ultima lectura                                                             |
+| Objeto propuesto | Responsabilidad                                                                                       | Informacipón que debe conservar                                                   | Comportamientos que debe realizar                                                                                                          |
+|------------------|-------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| Tanque           | Administrar el nivel del liquido, garantizar sus limites de uso seguros, controlar el flujo de estado | Capacidad Maxima<br/>Nivel actual<br/>Estado de operación<br/>Identificador unico | Incrementar el nivel de liquido<br/>Disminuir el nivel de liquido<br/>Cambiar el estado a uno de reposo<br/>Calcular porcentaje de llenado |
+| sensor           | Monitorear la lectura del nivel de su respectivo tanque                                               | Identificador unico<br/>Tanque relacionado<br/>Ultima lectura                     | Mostrar y actualizar nivel del tanque<br/>Consultar valor de la ultima lectura                                                             |
+
+# Relaciones entre objetos
+## ¿Qué objetos colaboran entre sí?
+Los objetos que colaboran entre ellos son el tanque y el sensor. 
+## ¿Qué información necesita un objeto del otro?
+El sensor de nivel requiere saber periodicamente el nivel del tanque asociado asi como su capacidad Maxima para verificar que una lectura sea válida dentro de los límites establecidos.
+## ¿Por qué consideran necsaria esa erlacion?
+La relacion es indispensable porque los sensores permiten mantener el líquido dentro de sus rangos permisibles sin interferir en las caracteristicas del tanque.
+## ¿Qué responsabilidades no deberian duplicarse entre clases?
+Controlar el volumen y límites fisicos del tanque.
+Gestion del estado del proceso.
 
 
 # Diseño de clases
