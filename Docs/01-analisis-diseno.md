@@ -1,6 +1,6 @@
 # Documento de Análisis y Diseño - Sistema de Monitoreo
 
-- **Estudiante A:** Leonardo Montellano Gonzalez (Modelo de Tanque)
+- **Estudiante A:** Leonardo Montellano González (Modelo de Tanque)
 - **Estudiante B:** Aaron Emmanuel Trejo Mendoza (Modelo de Sensor)
 - **Fecha de inicio:** [3/9/26]
 # Descripción del problema 
@@ -36,12 +36,20 @@ en poder saber su nivel constantemente, se encarga
 de transmitir el nivel de llenado de su respectivo
 tanque asociado.
 
+# Estado y comportamiento
+
+| Objeto propuesto | Responsabilidad                                                                                      | Informacipón que debe conservar                                                   | Comportamientos que debe realizar                                                                                                          |
+|-----------------|------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| Tanque          | Administrar el nivel del liquido, garantizar sus limites de uso seguros, controlar el flujo de estado | Capacidad Maxima<br/>Nivel actual<br/>Estado de operación<br/>Identificador unico | Incrementar el nivel de liquido<br/>Disminuir el nivel de liquido<br/>Cambiar el estado a uno de reposo<br/>Calcular porcentaje de llenado |
+| sensor          | Monitorear la lectura del nivel de su respectivo tanque                                              | Identificador unico<br/>Tanque relacionado<br/>Ultima lectura                     | Mostrar y actualizar nivel del tanque<br/>Consultar valor de la ultima lectura                                                             |
+
+
 # Diseño de clases
 
-| Clase | Atributos propuestos | Tipo de dato | Métodos propuestos | Responsabilidad |
-| :--- | :--- | :--- | :--- | :--- |
-| `Tanque` | `- id`<br>`- capacidadMaxima`<br>`- nivelActual`<br>`- estado` | `String`<br>`double`<br>`double`<br>`String` | `+ Tanque(id: String, capacidadMaxima: double)`<br>`+ getId(): String`<br>`+ getCapacidadMaxima(): double`<br>`+ getNivelActual(): double`<br>`+ getEstado(): String`<br>`+ llenar(cantidad: double): void`<br>`+ vaciar(cantidad: double): void`<br>`+ detener(): void`<br>`+ calcularPorcentaje(): double`<br>`+ obtenerInformacion(): String` | Administrar el almacenamiento de líquido, regular el volumen dentro de los límites físicos seguros [0, capacidadMaxima] y gestionar los estados de operación (DETENIDO, LLENANDO, VACIANDO). |
-| `SensorNivel` | `- id`<br>`- tanqueAsociado`<br>`- ultimaLectura` | `String`<br>`Tanque`<br>`double` | `+ SensorNivel(id: String, tanqueAsociado: Tanque)`<br>`+ getId(): String`<br>`+ leerNivel(): double`<br>`+ getUltimaLectura(): double`<br>`+ esLecturaValida(): boolean`<br>`+ obtenerReporte(): String` | Monitorear el nivel del tanque al que está acoplado, verificar la validez física de la medición y suministrar las lecturas de instrumentación al sistema. |
+| Clase         | Atributos propuestos                                           | Tipo de dato                                 | Métodos propuestos                                                                                                                                                                                                                                                                                                                               | Responsabilidad                                                                                                                                                                              |
+|:--------------|:---------------------------------------------------------------|:---------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Tanque`      | `- id`<br>`- capacidadMaxima`<br>`- nivelActual`<br>`- estado` | `String`<br>`double`<br>`double`<br>`String` | `+ Tanque(id: String, capacidadMaxima: double)`<br>`+ getId(): String`<br>`+ getCapacidadMaxima(): double`<br>`+ getNivelActual(): double`<br>`+ getEstado(): String`<br>`+ llenar(cantidad: double): void`<br>`+ vaciar(cantidad: double): void`<br>`+ detener(): void`<br>`+ calcularPorcentaje(): double`<br>`+ obtenerInformacion(): String` | Administrar el almacenamiento de líquido, regular el volumen dentro de los límites físicos seguros [0, capacidadMaxima] y gestionar los estados de operación (DETENIDO, LLENANDO, VACIANDO). |
+| `SensorNivel` | `- id`<br>`- tanqueAsociado`<br>`- ultimaLectura`              | `String`<br>`Tanque`<br>`double`             | `+ SensorNivel(id: String, tanqueAsociado: Tanque)`<br>`+ getId(): String`<br>`+ leerNivel(): double`<br>`+ getUltimaLectura(): double`<br>`+ esLecturaValida(): boolean`<br>`+ obtenerReporte(): String`                                                                                                                                        | Monitorear el nivel del tanque al que está acoplado, verificar la validez física de la medición y suministrar las lecturas de instrumentación al sistema.                                    |
 
 ---
 
@@ -103,7 +111,7 @@ Para proteger la integridad del sistema mediante encapsulación. Si atributos co
 * **`SensorNivel(String id, Tanque tanqueAsociado)`:** Obliga a vincular el sensor a un objeto `Tanque` real desde su instanciación, garantizando que el instrumento cuente con un origen de datos válido y evitando sensores huérfanos.
 
 ### 5. ¿Qué objetos se relacionan entre sí y por qué?
-Se determinó una relación de **asociación unidireccional** de `SensorNivel` hacia `Tanque`. El sensor requiere interactuar con el tanque para consultar variables mediante métodos como `getNivelActual()`, pero el `Tanque` no necesita conocer la existencia ni la cantidad de sensores conectados para operar.
+Se determinó una relación de **asociación unidireccional** de `SensorNivel` hacia `Tanque`. El sensor requiere interactuar con el tanque para consultar variables mediante métodos como `getNivelActual()`, pero él `Tanque` no necesita conocer la existencia ni la cantidad de sensores conectados para operar.
 
 ### 6. ¿Qué decisiones tomaron para evitar duplicar responsabilidades?
 El sensor no almacena una copia local del volumen ni altera el llenado o vaciado del tanque. Toda lógica de control volumétrico recae exclusivamente en `Tanque`. El sensor actúa como un observador pasivo que únicamente toma lecturas y las reporta.
