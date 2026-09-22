@@ -27,26 +27,22 @@ public class Tanque {
         this.estado=estado;
     }
     public void llenar(double cantidad){
-        if (this.nivelActual+cantidad<=this.capacidadMaxima){
-            this.nivelActual+=cantidad;
-            System.out.println(this.id+" llenando "+cantidad+"L");
+        if (this.nivelActual+cantidad<=this.capacidadMaxima) {
+            this.nivelActual += cantidad;
             this.setEstado("llenando");
             return;
         }
-        else{
-            System.out.println("El llenado excedería la capacidad maxima del tanque.");
+        else {
             return;
         }
     }
     public void vaciar (double cantidad){
-        if (this.nivelActual-cantidad>=0){
-            this.nivelActual-=cantidad;
-            System.out.println(this.id+" vaciando "+cantidad+"L");
+        if (this.nivelActual-cantidad>=0) {
+            this.nivelActual -= cantidad;
             this.setEstado("vaciando");
             return;
         }
-        else{
-            System.out.println("No hay suficiente producto.");
+        else {
             return;
         }
     }
