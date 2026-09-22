@@ -92,3 +92,9 @@ El sensor no almacena una copia local del volumen ni altera el llenado o vaciado
 
 ### 7. ¿Qué parte del diseño fue discutida entre ambos integrantes y qué decisión tomaron?
 Se debatió si el método de lectura debía recibir la referencia del tanque como argumento cada vez (`leerNivel(Tanque t)`) o mantenerla como atributo persistente (`tanqueAsociado`). Se acordó definir `tanqueAsociado` como atributo dentro del constructor para modelar adecuadamente un entorno de automatización industrial, donde la instrumentación queda físicamente montada y cableada a un tanque en particular.
+
+### 8. Cambios realizados al diseño
+Se modifico el UML de acuerdo al agregado de un nuevo metodo para el tanque procurando mantener una correcta encapsulacion de los atributos
+
+## 9. Diagrama UML final
+![Diagrama UML final](uml-final.png)
